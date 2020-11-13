@@ -1,0 +1,17 @@
+.item {
+    color: red;
+    margin-top: 10px;
+}
+
+.ava {
+    width: 60px;
+    border-radius: 30px;
+}
+
+.like {
+    color: violet;
+}
+
+.heart {
+    height: 22px;
+}

@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
+import Dialogs from "./components/Dialogs/Dialogs";
+import {Route} from 'react-router-dom'
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import {PostType, MessageType, DialogType, StateType, ActionsType} from "./State";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+type PropsType = {
+    newPostText: string
+    state: StateType
+    posts: Array<PostType>
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+    dispatch: (action: ActionsType) => void
+    newMessageText: string
 }
 
-export default App;
+export default function App(props: PropsType) {
+    return (
+        <div className={'app-wrapper'}>
+            <Header/>
+            <Navbar/>
+            <div className={'app-wrapper-content'}>
+                <Route path='/dialogs' render={() => <Dialogs
+                    newMessageText={props.newMessageText}
+                    messages={props.messages}
+                    dialogs={props.dialogs}
+                    dispatch={props.dispatch}
+                />}/>
+                <Route path='/profile' render={() => <Profile
+                    newPostText={props.newPostText}
+                    posts={props.state.profilePage.posts}
+                    profilePage={props.state.profilePage}
+                    dispatch={props.dispatch}/>}/>
+                <Route path='/news' render={() => <News/>}/>
+                <Route path='/music' render={() => <Music/>}/>
+            </div>
+        </div>
+    )
+}
