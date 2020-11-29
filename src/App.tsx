@@ -3,11 +3,11 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from 'react-router-dom'
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import {PostType, MessageType, DialogType, ActionsType, ProfilePageType} from "./redux/Store";
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 type PropsType = {
@@ -26,7 +26,7 @@ export default function App(props: PropsType) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route path='/dialogs' render={() => <Dialogs
+                <Route path='/dialogs' render={() => <DialogsContainer
                     newMessageText={props.newMessageText}
                     messages={props.messages}
                     dialogs={props.dialogs}

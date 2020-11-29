@@ -1,26 +1,26 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType, ActionsType,} from "../../../redux/Store";
-import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profileReducer";
+import {PostType} from "../../../redux/Store";
 
 
 type PropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: ActionsType) => void
+    updateNewPostAction: (text: string) => void
+    addPost: () => void
 }
 
 function MyPosts(props: PropsType) {
 
-    function addPost  () {
-            props.dispatch(addPostActionCreator())
-        };
-
-    function onPostChange (e: ChangeEvent<HTMLTextAreaElement>) {
-        let text = e.target.value;
-        props.dispatch(updateNewPostActionCreator(text))
+    function addPost() {
+        props.addPost()
     };
+
+    function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
+        let text = e.target.value;
+        props.updateNewPostAction(text);
+    }
 
     let postElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>);
 
@@ -38,4 +38,4 @@ function MyPosts(props: PropsType) {
 }
 
 
-export default MyPosts;
+export default MyPosts
