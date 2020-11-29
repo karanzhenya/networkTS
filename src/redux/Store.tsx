@@ -30,7 +30,7 @@ export type StateType = {
 export type ActionsType = AddPostActionType | UpdateNewPostActionType | SendMessageType | ChangeNewMessageActionType
 type StoreType = {
     _state: StateType,
-    subscriber: (observer: () => void) => void,
+    subscribe: (observer: () => void) => void,
     getState: () => StateType,
     _rerenderEntireTree: (_state: StateType) => void,
     dispatch: (action: ActionsType) => void
@@ -61,12 +61,12 @@ export let store: StoreType = {
             newMessageText: ""
         }
     },
-    _rerenderEntireTree() {
+    _rerenderEntireTree(state) {
     },
     getState() {
         return this._state
     },
-    subscriber(observer) {
+    subscribe(observer) {
         this._rerenderEntireTree = observer
     },
     dispatch(action: ActionsType) {

@@ -11,8 +11,15 @@ export type UpdateNewPostActionType = {
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_CHANGE = "UPDATE-NEW-POST-CHANGE";
 
+let initialState: ProfilePageType = {
+    posts: [
+        {id: 1, message: "I tried so hard and got so far", likesCount: 5},
+        {id: 2, message: "But in the end, it doesn't even matter!", likesCount: 12}
+    ],
+    newPostText: ""
+};
 
-export const profileReducer = (state: ProfilePageType, action: ActionsType) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {

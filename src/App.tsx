@@ -7,17 +7,17 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from 'react-router-dom'
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import {PostType, MessageType, DialogType, StateType, ActionsType} from "./redux/Store";
+import {PostType, MessageType, DialogType, StateType, ActionsType, ProfilePageType} from "./redux/Store";
 
 
 type PropsType = {
     newPostText: string
-    state: StateType
     posts: Array<PostType>
     messages: Array<MessageType>
     dialogs: Array<DialogType>
     dispatch: (action: ActionsType) => void
     newMessageText: string
+    profilePage: ProfilePageType
 }
 
 export default function App(props: PropsType) {
@@ -34,8 +34,7 @@ export default function App(props: PropsType) {
                 />}/>
                 <Route path='/profile' render={() => <Profile
                     newPostText={props.newPostText}
-                    posts={props.state.profilePage.posts}
-                    profilePage={props.state.profilePage}
+                    posts={props.profilePage.posts}
                     dispatch={props.dispatch}/>}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>

@@ -6,7 +6,6 @@ import {PostType, ProfilePageType, ActionsType} from "../../redux/Store";
 
 
 type PropsType = {
-    profilePage: ProfilePageType
     posts: Array<PostType>
     newPostText: string
     dispatch: (action: ActionsType) => void
@@ -17,7 +16,7 @@ function Profile(props: PropsType) {
     return (
         <div className={s.content}>
             <ProfileInfo />
-            <MyPosts posts={props.profilePage.posts} newPostText={props.newPostText} dispatch={props.dispatch}/>
+            <MyPosts posts={props.posts} newPostText={props.newPostText} dispatch={props.dispatch}/>
         </div>
     );
 }

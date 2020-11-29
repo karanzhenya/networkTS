@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import {store} from "./redux/Store";
+import {store} from "./redux/redux-store";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -12,8 +12,8 @@ export function rerenderEntireTree () {
         <React.StrictMode>
             <BrowserRouter>             {/*оборачивается главная компонента, чтобы испоьзовать роуты*/}
                 <App
-                    state={store.getState()}
                     newPostText={store._state.profilePage.newPostText}
+                    profilePage={store._state.profilePage}
                     newMessageText={store._state.messagesPage.newMessageText}
                     messages={store._state.messagesPage.messages}
                     dialogs={store._state.messagesPage.dialogs}
@@ -27,7 +27,7 @@ export function rerenderEntireTree () {
 }
 rerenderEntireTree();
 
-store.subscriber(rerenderEntireTree)   //колбэк, чтобы прокинуть rerender в стейт
+store.subscribe(rerenderEntireTree)   //колбэк, чтобы прокинуть rerender в стейт
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
