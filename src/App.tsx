@@ -7,7 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from 'react-router-dom'
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import {PostType, MessageType, DialogType, StateType, ActionsType, ProfilePageType} from "./redux/Store";
+import {PostType, MessageType, DialogType, ActionsType, ProfilePageType} from "./redux/Store";
 
 
 type PropsType = {
