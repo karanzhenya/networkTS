@@ -11,15 +11,7 @@ export function rerenderEntireTree () {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>             {/*оборачивается главная компонента, чтобы испоьзовать роуты*/}
-                <App
-                    newPostText={store.getState().profilePage.newPostText}
-                    profilePage={store.getState().profilePage}
-                    newMessageText={store.getState().messagesPage.newMessageText}
-                    messages={store.getState().messagesPage.messages}
-                    dialogs={store.getState().messagesPage.dialogs}
-                    posts={store.getState().profilePage.posts}
-                    dispatch={store.dispatch.bind(store)}
-                />
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

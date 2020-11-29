@@ -1,30 +1,29 @@
 import React from 'react';
-import {ActionsType, DialogType, MessageType} from "../../redux/Store";
+import {StoreType} from "../../redux/Store";
 import {changeNewMessageCreator, sendMessageCreator,} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
 
 
 type PropsType = {
-    messages: Array<MessageType>
-    dialogs: Array<DialogType>
-    newMessageText: string
-    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
 
 function DialogsContainer(props: PropsType) {
 
     function changeMessageText(message: string) {
-        props.dispatch(changeNewMessageCreator(message))
+        props.store.dispatch(changeNewMessageCreator(message))
     };
 
     function addMessage() {
-        props.dispatch(sendMessageCreator())
+        props.store.dispatch(sendMessageCreator())
     }
 
     return (
-        <Dialogs addMessage={addMessage} changeMessageText={changeMessageText} messages={props.messages}
-                 dialogs={props.dialogs} newMessageText={props.newMessageText}/>
+        <Dialogs addMessage={addMessage} changeMessageText={changeMessageText}
+                 messages={props.store.getState().messagesPage.messages}
+                 dialogs={props.store.getState().messagesPage.dialogs}
+                 newMessageText={props.store.getState().messagesPage.newMessageText}/>
     );
 }
 

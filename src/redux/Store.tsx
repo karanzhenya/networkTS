@@ -28,7 +28,7 @@ export type StateType = {
     messagesPage: MessagesPageType
 }
 export type ActionsType = AddPostActionType | UpdateNewPostActionType | SendMessageType | ChangeNewMessageActionType
-type StoreType = {
+export type StoreType = {
     _state: StateType,
     subscribe: (observer: () => void) => void,
     getState: () => StateType,
