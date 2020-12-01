@@ -1,12 +1,13 @@
 import React from 'react';
 import s from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {StoreType} from "../../redux/Store";
 import MyPostsContainer from './MyPosts/MyPostsContainer';
+import {CombinedState, Store} from "redux";
+import {ActionsType, MessagesPageType, ProfilePageType} from "../../redux/Store";
 
 
 type PropsType = {
-    store: StoreType
+    store: Store<CombinedState<{ profilePage: ProfilePageType; messagesPage: MessagesPageType; }>, ActionsType>;
 }
 
 

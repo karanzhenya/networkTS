@@ -6,12 +6,13 @@ import Profile from "./components/Profile/Profile";
 import {Route} from 'react-router-dom'
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import {StoreType} from "./redux/Store";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import {ActionsType, MessagesPageType, ProfilePageType} from "./redux/Store";
+import {CombinedState, Store} from "redux";
 
 
 type PropsType = {
-    store: StoreType
+    store: Store<CombinedState<{ profilePage: ProfilePageType; messagesPage: MessagesPageType; }>, ActionsType>;
 }
 
 export default function App(props: PropsType) {

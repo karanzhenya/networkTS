@@ -1,13 +1,15 @@
 import React from 'react';
 import './index.css';
-import {store} from "./redux/redux-store";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
+import store from './redux/redux-store';
 
-export function rerenderEntireTree () {
+
+export function rerenderEntireTree() {
+
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>             {/*оборачивается главная компонента, чтобы испоьзовать роуты*/}
@@ -17,6 +19,7 @@ export function rerenderEntireTree () {
         document.getElementById('root')
     );
 }
+
 rerenderEntireTree();
 
 store.subscribe(rerenderEntireTree)   //колбэк, чтобы прокинуть rerender в стейт

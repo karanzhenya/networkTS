@@ -1,13 +1,12 @@
 import React from 'react';
-import {StoreType} from "../../redux/Store";
+import {ActionsType, MessagesPageType, ProfilePageType, StoreType} from "../../redux/Store";
 import {changeNewMessageCreator, sendMessageCreator,} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
-
+import {CombinedState, Store} from "redux";
 
 type PropsType = {
-    store: StoreType
+    store: Store<CombinedState<{ profilePage: ProfilePageType; messagesPage: MessagesPageType; }>, ActionsType>;
 }
-
 
 function DialogsContainer(props: PropsType) {
 
