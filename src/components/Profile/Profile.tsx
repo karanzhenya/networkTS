@@ -11,11 +11,11 @@ type PropsType = {
 }
 
 
-function Profile(props: PropsType) {
+function Profile() {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer />
         </div>
     );
 }

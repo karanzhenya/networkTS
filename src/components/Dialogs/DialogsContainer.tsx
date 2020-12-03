@@ -1,29 +1,32 @@
 import React from 'react';
-import {ActionsType, MessagesPageType, ProfilePageType, StoreType} from "../../redux/Store";
-import {changeNewMessageCreator, sendMessageCreator,} from "../../redux/dialogsReducer";
-import Dialogs from "./Dialogs";
+import {ActionsType, MessagesPageType, ProfilePageType} from "../../redux/Store";
+import {changeNewMessageCreator} from "../../redux/dialogsReducer";
 import {CombinedState, Store} from "redux";
+import StoreContext from "../../StoreContext";
+import Dialogs from "./Dialogs";
 
 type PropsType = {
     store: Store<CombinedState<{ profilePage: ProfilePageType; messagesPage: MessagesPageType; }>, ActionsType>;
 }
 
-function DialogsContainer(props: PropsType) {
+function DialogsContainer() {
 
-    function changeMessageText(message: string) {
-        props.store.dispatch(changeNewMessageCreator(message))
-    };
+    return <StoreContext.Consumer>
+        {store => {
+            function changeMessageText(message: string) {
+                store.dispatch(changeNewMessageCreator(message))
+            }
 
-    function addMessage() {
-        props.store.dispatch(sendMessageCreator())
-    }
+            function addMessage() {
+                store.dispatch(sendMessageCreator())
+            }
 
-    return (
-        <Dialogs addMessage={addMessage} changeMessageText={changeMessageText}
-                 messages={props.store.getState().messagesPage.messages}
-                 dialogs={props.store.getState().messagesPage.dialogs}
-                 newMessageText={props.store.getState().messagesPage.newMessageText}/>
-    );
-}
+            return <Dialogs addMessage={addMessage} changeMessageText={changeMessageText}
+                            messages={store.getState().messagesPage.messages}
+                            dialogs={store.getState().messagesPage.dialogs}
+                            newMessageText={store.getState().messagesPage.newMessageText}/>
+        }}
+    </StoreContext.Consumer>
+};
 
 export default DialogsContainer;

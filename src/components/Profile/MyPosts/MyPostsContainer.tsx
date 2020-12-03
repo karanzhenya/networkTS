@@ -3,27 +3,34 @@ import MyPosts from "./MyPosts";
 import {ActionsType, MessagesPageType, ProfilePageType} from "../../../redux/Store";
 import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profileReducer";
 import {CombinedState, Store} from "redux";
+import StoreContext from "../../../StoreContext";
 
 
 type PropsType = {
     store: Store<CombinedState<{ profilePage: ProfilePageType; messagesPage: MessagesPageType; }>, ActionsType>;
 }
 
-function MyPostsContainer(props: PropsType) {
+function MyPostsContainer() {
 
-    function addPost() {
-        props.store.dispatch(addPostActionCreator())
-    };
 
-    function onPostChange(text: string) {
-        let action = updateNewPostActionCreator(text)
-        props.store.dispatch(action)
-    };
+    return <StoreContext.Consumer>
+        {store => {
+            function addPost() {
+                store.dispatch(addPostActionCreator())
+            }
 
-    return <MyPosts posts={props.store.getState().profilePage.posts}
-                    newPostText={props.store.getState().profilePage.newPostText} updateNewPostAction={onPostChange}
-                    addPost={addPost}/>
-}
+            function onPostChange(text: string) {
+                let action = updateNewPostActionCreator(text)
+                store.dispatch(action)
+            }
+
+            return <MyPosts posts={store.getState().profilePage.posts}
+                            newPostText={store.getState().profilePage.newPostText}
+                            updateNewPostAction={onPostChange}
+                            addPost={addPost}/>
+        }}
+    </StoreContext.Consumer>
+};
 
 
 export default MyPostsContainer;
