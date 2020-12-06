@@ -1,14 +1,8 @@
 import React from 'react';
 import MyPosts from "./MyPosts";
-import {ActionsType, MessagesPageType, ProfilePageType} from "../../../redux/Store";
 import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profileReducer";
-import {CombinedState, Store} from "redux";
 import StoreContext from "../../../StoreContext";
 
-
-type PropsType = {
-    store: Store<CombinedState<{ profilePage: ProfilePageType; messagesPage: MessagesPageType; }>, ActionsType>;
-}
 
 function MyPostsContainer() {
 
